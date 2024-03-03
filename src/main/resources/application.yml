@@ -4,3 +4,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+    show-sql: true # show SQL statements in the console
+    properties:
+      hibernate:
+        format_sql: true # format SQL statements for readability

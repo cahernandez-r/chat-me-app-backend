@@ -1,13 +1,20 @@
 package com.chatmee.chatmee.domains.user;
 
 import com.chatmee.chatmee.domains.user.request.CreateUserRequest;
+import com.chatmee.chatmee.domains.user.request.FindPeopleRequest;
 import com.chatmee.chatmee.domains.user.response.CreateUserResponse;
+import com.chatmee.chatmee.domains.user.response.FindPeopleResponse;
+import com.chatmee.chatmee.domains.user.response.ListFindPeopleResponse;
 import com.chatmee.chatmee.general.entities.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import static com.chatmee.chatmee.domains.user.UserMapper.createUserRequestToUser;
-import static com.chatmee.chatmee.domains.user.UserMapper.userToCreateUserResponse;
+import java.util.List;
+
+import static com.chatmee.chatmee.domains.user.UserMapper.*;
 
 @Component
 @RequiredArgsConstructor
@@ -27,5 +34,23 @@ public class UserManager {
     public Boolean validateUserNameAndSecurityWord(final String userName, final String securityWord) {
         final User user = userService.getUserByUserName(userName);
         return user.getSecurityWord().equals(securityWord);
+    }
+
+    public ListFindPeopleResponse findPeople(final String userName, final FindPeopleRequest request) {
+        Pageable page = PageRequest.of(request.getPageNumber(), request.getPageSize());
+        Page<User> pagedUsers = userService.findPeople(userName, page);
+        //users.
+        return ListFindPeopleResponse
+                .builder()
+                .totalElements(pagedUsers.getTotalElements())
+                .users(generateListUsers(pagedUsers.getContent()))
+                .build();
+
+    }
+
+    private List<FindPeopleResponse> generateListUsers(final List<User> users) {
+        return users.stream()
+                .map(UserMapper::userToFindPeopleResponse)
+                .toList();
     }
 }

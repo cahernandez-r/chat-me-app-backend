@@ -1,9 +1,10 @@
 package com.chatmee.chatmee.domains.user;
 
 import com.chatmee.chatmee.domains.user.request.CreateUserRequest;
+import com.chatmee.chatmee.domains.user.request.FindPeopleRequest;
 import com.chatmee.chatmee.domains.user.response.CreateUserResponse;
+import com.chatmee.chatmee.domains.user.response.ListFindPeopleResponse;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,5 +33,11 @@ public class UserController {
     @GetMapping(UserRoute.VALIDATE_SECURITY_WORD)
     public ResponseEntity<Boolean> validateUserNameSecurityWord(@PathVariable final String userName, @PathVariable final String securityWord) {
         return ResponseEntity.ok().body(userManager.validateUserNameAndSecurityWord(userName, securityWord));
+    }
+
+    @PostMapping(UserRoute.FIND_PEOPLE)
+    public ResponseEntity<ListFindPeopleResponse> findPeople(@PathVariable final String userName,
+                                                             @RequestBody final FindPeopleRequest request) {
+        return ResponseEntity.ok().body(userManager.findPeople(userName, request));
     }
 }

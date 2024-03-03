@@ -1,2 +1,10 @@
+INSERT INTO tbl_resource (code, description, route, icon, active) VALUES ('003', 'Home', '/information', 'pi pi-home', true);
 INSERT INTO tbl_resource (code, description, route, icon, active) VALUES ('001', 'Find people', '/find-people', 'pi pi-search', true);
 INSERT INTO tbl_resource (code, description, route, icon, active) VALUES ('002', 'My chats', '/chats', 'pi pi-comments', true);
+INSERT INTO tbl_user (user_name, security_word, active) VALUES ('camilo2121', 'camilo2121', true);
+INSERT INTO tbl_user (user_name, security_word, active) VALUES ('david', 'camilo2121', true);
+INSERT INTO tbl_user (user_name, security_word, active) VALUES ('test', 'camilo2121', true);
+INSERT INTO tbl_user (user_name, security_word, active) VALUES ('deiner', 'camilo2121', true);
+INSERT INTO tbl_user (user_name, security_word, active) VALUES ('luzdar', 'camilo2121', true);
+INSERT INTO tbl_user (user_name, security_word, active) VALUES ('pepiro', 'camilo2121', true);
+INSERT INTO tbl_user (user_name, security_word, active) VALUES ('perra', 'camilo2121', true);
