@@ -7,4 +7,7 @@ INSERT INTO tbl_user (user_name, security_word, active) VALUES ('test', 'camilo2
 INSERT INTO tbl_user (user_name, security_word, active) VALUES ('deiner', 'camilo2121', true);
 INSERT INTO tbl_user (user_name, security_word, active) VALUES ('luzdar', 'camilo2121', true);
 INSERT INTO tbl_user (user_name, security_word, active) VALUES ('pepiro', 'camilo2121', true);
-INSERT INTO tbl_user (user_name, security_word, active) VALUES ('perra', 'camilo2121', true);
+INSERT INTO tbl_user (user_name, security_word, active) VALUES ('carlos', 'camilo2121', true);
+INSERT INTO tbl_user (user_name, security_word, active) VALUES ('tomas', 'camilo2121', true);
+INSERT INTO tbl_user (user_name, security_word, active) VALUES ('jadier', 'camilo2121', true);
+INSERT INTO tbl_user (user_name, security_word, active) VALUES ('deinerAndres', 'camilo2121', true);
