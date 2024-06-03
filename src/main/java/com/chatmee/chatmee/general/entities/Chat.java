@@ -15,6 +15,13 @@ public class Chat extends EntityPrincipal {
     @Column(name = "sec_chat")
     private Long id;
 
-    @Column(name = "json_chat")
-    private String jsonChat;
+    @Column(name = "uuid_chat")
+    private String uuidChat;
+
+    @Column(name = "message")
+    private String message;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "sec_chat_room")
+    private ChatRoom chatRoom;
 }

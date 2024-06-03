@@ -39,7 +39,6 @@ public class UserManager {
     public ListFindPeopleResponse findPeople(final String userName, final FindPeopleRequest request) {
         Pageable page = PageRequest.of(request.getPageNumber(), request.getPageSize());
         Page<User> pagedUsers = userService.findPeople(userName, page);
-        //users.
         return ListFindPeopleResponse
                 .builder()
                 .totalElements(pagedUsers.getTotalElements())
