@@ -13,10 +13,10 @@ public final class ChatMapper {
 
     public static ChatRoom createNewChat(final User sender, final User recipient) {
         final String uuid = UUID.randomUUID().toString();
-        return ChatRoom.builder()
-                .sender(sender)
-                .recipient(recipient)
-                .uuidChat(uuid)
-                .build();
+        final ChatRoom chatRoom = new ChatRoom();
+        chatRoom.setSender(sender);
+        chatRoom.setRecipient(recipient);
+        chatRoom.setUuidChat(uuid);
+        return chatRoom;
     }
 }

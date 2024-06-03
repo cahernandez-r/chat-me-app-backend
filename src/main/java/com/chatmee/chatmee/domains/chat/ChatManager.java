@@ -1,7 +1,6 @@
 package com.chatmee.chatmee.domains.chat;
 
 import com.chatmee.chatmee.general.entities.ChatRoom;
-import com.chatmee.chatmee.general.entities.Message;
 import com.chatmee.chatmee.general.entities.User;
 import com.chatmee.chatmee.general.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;

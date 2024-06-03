@@ -6,6 +6,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -26,6 +27,6 @@ public class Message extends EntityPrincipal {
     private String message;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "sec_chat_room")
+    @JoinColumn(name = "sec_chat_room")
     private ChatRoom chatRoom;
 }
