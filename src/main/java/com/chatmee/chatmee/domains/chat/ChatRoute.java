@@ -8,4 +8,6 @@ public final class ChatRoute {
 
     public static final String CHATS = "chats";
     public static final String CREATE_CHAT = "save/{idSender}/{idRecipient}";
+
+    public static final String CHAT = "chat";
 }
