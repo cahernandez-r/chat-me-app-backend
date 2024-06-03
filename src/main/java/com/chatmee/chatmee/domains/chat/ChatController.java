@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(ChatRoute.CHATS)
 public class ChatController {
 
-    private final ChatService chatService;
+    private final ChatManager chatManager;
 
     @PostMapping(ChatRoute.CREATE_CHAT)
     public ResponseEntity<String> createChat(@PathVariable final Long idSender, @PathVariable final Long idRecipient) {
-        return ResponseEntity.ok(chatService.createChat(idSender, idRecipient));
+        return ResponseEntity.ok(chatManager.createChat(idSender, idRecipient));
     }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
@@ -14,4 +15,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByUserNameAndActiveTrue(String userName);
 
     Page<User> findAllByActiveTrueAndUserNameIsNot(String userName, Pageable page);
+
+    Optional<User> findByIdAndActiveTrue(Long id);
 }
