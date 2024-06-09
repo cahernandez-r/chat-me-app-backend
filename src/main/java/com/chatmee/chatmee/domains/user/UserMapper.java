@@ -2,6 +2,7 @@ package com.chatmee.chatmee.domains.user;
 
 import com.chatmee.chatmee.domains.user.request.CreateUserRequest;
 import com.chatmee.chatmee.domains.user.response.CreateUserResponse;
+import com.chatmee.chatmee.domains.user.response.FetchInfoUserResponse;
 import com.chatmee.chatmee.domains.user.response.FindPeopleResponse;
 import com.chatmee.chatmee.general.entities.User;
 import lombok.AccessLevel;
@@ -30,6 +31,14 @@ public final class UserMapper {
         return FindPeopleResponse.builder()
                 .id(user.getId())
                 .userName(user.getUserName())
+                .build();
+    }
+
+    public static FetchInfoUserResponse userToFetchInfoResponse(final User user) {
+        return FetchInfoUserResponse.builder()
+                .id(user.getId())
+                .userName(user.getUserName())
+                .securityWord(user.getSecurityWord())
                 .build();
     }
 }

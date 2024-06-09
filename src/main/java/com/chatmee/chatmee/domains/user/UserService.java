@@ -15,4 +15,6 @@ public interface UserService {
     User getUserByUserName(String userName);
 
     Page<User> findPeople(String userName, Pageable page );
+
+    User fetchInfoUser(String userName);
 }

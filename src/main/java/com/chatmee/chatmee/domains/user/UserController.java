@@ -3,6 +3,7 @@ package com.chatmee.chatmee.domains.user;
 import com.chatmee.chatmee.domains.user.request.CreateUserRequest;
 import com.chatmee.chatmee.domains.user.request.FindPeopleRequest;
 import com.chatmee.chatmee.domains.user.response.CreateUserResponse;
+import com.chatmee.chatmee.domains.user.response.FetchInfoUserResponse;
 import com.chatmee.chatmee.domains.user.response.ListFindPeopleResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -39,5 +40,10 @@ public class UserController {
     public ResponseEntity<ListFindPeopleResponse> findPeople(@PathVariable final String userName,
                                                              @RequestBody final FindPeopleRequest request) {
         return ResponseEntity.ok().body(userManager.findPeople(userName, request));
+    }
+
+    @GetMapping(UserRoute.FETCH_INFO_USER)
+    public ResponseEntity<FetchInfoUserResponse> findPeople(@PathVariable final String userName) {
+        return ResponseEntity.ok().body(userManager.fetchInfoResponse(userName));
     }
 }

@@ -3,6 +3,7 @@ package com.chatmee.chatmee.domains.user;
 import com.chatmee.chatmee.domains.user.request.CreateUserRequest;
 import com.chatmee.chatmee.domains.user.request.FindPeopleRequest;
 import com.chatmee.chatmee.domains.user.response.CreateUserResponse;
+import com.chatmee.chatmee.domains.user.response.FetchInfoUserResponse;
 import com.chatmee.chatmee.domains.user.response.FindPeopleResponse;
 import com.chatmee.chatmee.domains.user.response.ListFindPeopleResponse;
 import com.chatmee.chatmee.general.entities.User;
@@ -45,6 +46,11 @@ public class UserManager {
                 .users(generateListUsers(pagedUsers.getContent()))
                 .build();
 
+    }
+
+    public FetchInfoUserResponse fetchInfoResponse(String userName) {
+        User user = userService.fetchInfoUser(userName);
+        return UserMapper.userToFetchInfoResponse(user);
     }
 
     private List<FindPeopleResponse> generateListUsers(final List<User> users) {

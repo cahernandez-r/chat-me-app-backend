@@ -34,4 +34,9 @@ public class UserServiceImpl implements UserService {
     public Page<User> findPeople(final String userName, final Pageable page ) {
         return userRepository.findAllByActiveTrueAndUserNameIsNot(userName, page);
     }
+
+    @Override
+    public User fetchInfoUser(final String userName) {
+        return userRepository.findByUserNameAndActiveTrue(userName);
+    }
 }
