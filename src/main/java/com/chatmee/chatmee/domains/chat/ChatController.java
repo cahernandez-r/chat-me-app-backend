@@ -4,9 +4,14 @@ import com.chatmee.chatmee.domains.chat.model.ChatNotification;
 import com.chatmee.chatmee.domains.chat.request.MessageRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.annotation.SendToUser;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,19 +25,12 @@ public class ChatController {
     private final SimpMessagingTemplate messagingTemplate;
     private final ChatManager chatManager;
 
-    @MessageMapping(ChatRoute.CHAT)
-    public void processMessage(@Payload MessageRequest messageRequest) {
-        chatManager.saveMessage(messageRequest);
-        messagingTemplate.convertAndSendToUser(
-                String.valueOf(messageRequest.idRecipient()),"/queue/messages",
-                ChatNotification
-                        .builder()
-                        .uuidChat(messageRequest.uuidChat())
-                        .senderId(messageRequest.idSender())
-                        .recipientId(messageRequest.idRecipient())
-                        .content(messageRequest.message())
-                        .build()
-        );
+    @MessageMapping("/chat-{userName}")
+    public void processMessage(@Payload MessageRequest messageRequest, @DestinationVariable String userName) {
+        //chatManager.saveMessage(messageRequest);
+        messagingTemplate.convertAndSend(String.format("/queue/messages-%s", userName),
+                messageRequest);
+
     }
 
     @PostMapping(ChatRoute.CREATE_CHAT)
