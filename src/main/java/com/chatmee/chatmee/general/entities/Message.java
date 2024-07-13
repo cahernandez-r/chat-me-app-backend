@@ -27,6 +27,12 @@ public class Message extends EntityPrincipal {
     private String message;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    private User sender;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User recipient;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sec_chat_room")
     private ChatRoom chatRoom;
 }

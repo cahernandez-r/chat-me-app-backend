@@ -7,6 +7,8 @@ import com.chatmee.chatmee.general.repositories.MessageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 public class ChatServiceImpl implements ChatService {
@@ -21,7 +23,17 @@ public class ChatServiceImpl implements ChatService {
     }
 
     @Override
-    public Message saveMessage(final Message message) {
-        return messageRepository.save(message);
+    public void saveMessage(final Message message) {
+        messageRepository.save(message);
+    }
+
+    @Override
+    public Optional<ChatRoom> findChatRoomByIdSenderAndIdRecipient(final Long idSender, final Long idRecipient) {
+        return chatRoomRepository.findBySenderAndRecipientOrRecipientAndSenderAndActiveTrue(idSender, idRecipient);
+    }
+
+    @Override
+    public Optional<ChatRoom> findByUuidChatAndActiveTrue(final String uuid) {
+        return chatRoomRepository.findByUuidChatAndActiveTrue(uuid);
     }
 }

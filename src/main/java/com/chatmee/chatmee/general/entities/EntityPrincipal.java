@@ -19,7 +19,7 @@ import java.util.Date;
 public class EntityPrincipal {
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "creation_date", insertable = false, updatable = false)
+    @Column(name = "creation_date")
     private Date creationDate;
 
     @Column(name = "active")

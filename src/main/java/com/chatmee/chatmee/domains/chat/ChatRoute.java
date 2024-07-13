@@ -7,7 +7,9 @@ import lombok.AllArgsConstructor;
 public final class ChatRoute {
 
     public static final String CHATS = "chats";
-    public static final String CREATE_CHAT = "save/{idSender}/{idRecipient}";
+    public static final String CREATE_CHAT = "save";
 
-    public static final String CHAT = "/chat";
+    public static final String CHAT = "/chat-{userName}";
+
+        public static final String EXISTS = "/exists/{idSender}/{idRecipient}";
 }
